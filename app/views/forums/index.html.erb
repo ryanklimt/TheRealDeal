@@ -1,11 +1,12 @@
 <% @title = "Threads" %>
 
 <ul>
-<%= @forums.each do |t| %>
+<% @forums.each do |t| %>
   
   <li><%= link_to t.name, t %></li>
   <span><%= t.description %> </span>
   
 <% end %>
+</ul>
   
 <%= link_to "New Thread", new_forum_path %>

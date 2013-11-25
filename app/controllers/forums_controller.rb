@@ -1,7 +1,7 @@
 class ForumsController < ApplicationController
   
   def index
-    @forum = Forum.all
+    @forums = Forum.all
   end
   
   def new
