@@ -11,7 +11,7 @@ class ForumsController < ApplicationController
   def create
     @forum = Forum.new(forum_params)
     if @forum.save then
-      flash[:success] = @forum.name + "forum created!"
+      flash[:success] = @forum.name + " forum created!"
       redirect_to @forum
     else
       render 'new'
