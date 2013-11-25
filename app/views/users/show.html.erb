@@ -1,0 +1,15 @@
+<% @title = @user.username + "'s" + " Profile"%>
+
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.username %>
+      </h1>
+      <p><%= @user.email %></p>
+      <p><%= @user.firstname %></p>
+      <p><%= @user.lastname %></p>
+    </section>
+  </aside>
+</div>
