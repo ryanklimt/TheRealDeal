@@ -1,0 +1,16 @@
+<% if @post.errors.any? %>
+    <div class="alert alert-danger"> 
+    <p>The form contains <%= pluralize(@post.errors.count, "error") %>.</p>
+    </div>
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+      <li class="text-danger"> <%= message %> </li>
+      <% end %>
+    </ul>
+<% end %>
+
+<div class='form-group'>
+	<%= f.label :content, "Content*" %>
+  <%= f.text_area :content, size: "50x6", class: 'form-control' %>
+</div>
+

@@ -1,0 +1,15 @@
+<% @title = @forum.name %>
+
+<h1><%= @forum.name %> </h1>
+
+<% for topic in @forum.topics %>
+
+  <li>Title: <%= link_to topic.title, topic %>
+    <% if current_user.admin? then %>
+      | <%= link_to 'delete', topic, method: :delete, data: { confirm: "You sure you want to delete #{topic.title}?" } %>
+    <% end %>
+  </li>
+
+<% end %>
+
+<p><%= link_to "New Topic", new_forum_topic_path(@forum.id) %></p>

@@ -1,0 +1,11 @@
+<% @title = "New Post" %>
+
+<h1>New Post</h1>
+
+<%= form_for [@post.topic, @post] do |f| %>
+
+  <%= render "post_form", f: f %>
+
+  <%= f.submit "Create Post", class: "btn btn-primary" %>
+
+<% end %>

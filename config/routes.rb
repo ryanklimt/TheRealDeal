@@ -8,7 +8,12 @@ UnknownBusiness::Application.routes.draw do
   get 'contact', to: "static_pages#contact", as: 'contact'
   
   resources :users
-  resources :forums
+  resources :forums do
+    resources :topics, shallow: true
+  end
+  resources :topics do
+    resources :posts, shallow: true
+  end
   resources :sessions, only: [:new, :create, :destroy]
   
   get 'signup', to: 'users#new', as: 'signup'

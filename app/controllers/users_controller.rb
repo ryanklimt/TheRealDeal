@@ -63,10 +63,6 @@ class UsersController < ApplicationController
       params.require(:user).permit(:firstname, :lastname, :username, :email)
     end
     
-    def admin_user
-      redirect_to root_path unless current_user.admin?
-    end
-    
     def correct_user
       @user = User.find(params[:id])
       redirect_to root_path unless current_user?(@user)

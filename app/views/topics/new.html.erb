@@ -1,0 +1,11 @@
+<% @title = "New Topic" %>
+
+<h1>New Topic</h1>
+
+<%= form_for [@topic.forum, @topic] do |f| %>
+
+  <%= render "topic_form", f: f %>
+
+  <%= f.submit "Create Topic", class: "btn btn-primary" %>
+
+<% end %>

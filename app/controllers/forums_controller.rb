@@ -1,5 +1,7 @@
 class ForumsController < ApplicationController
   
+  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
+  
   def index
     @forums = Forum.all
   end
@@ -10,7 +12,7 @@ class ForumsController < ApplicationController
   
   def create
     @forum = Forum.new(forum_params)
-    if @forum.save then
+    if @forum.save and current_user.admin? then
       flash[:success] = @forum.name + " forum created!"
       redirect_to @forum
     else

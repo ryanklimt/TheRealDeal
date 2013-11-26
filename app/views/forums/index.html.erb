@@ -1,12 +1,20 @@
 <% @title = "Threads" %>
 
+<h1> Threads </h1>
+
 <ul>
 <% @forums.each do |t| %>
   
-  <li><%= link_to t.name, t %></li>
+  <li><%= link_to t.name, t %>
+    <% if current_user.admin? %>
+    | <%= link_to 'delete', t, method: :delete, data: { confirm: "You sure you want to delete the thread #{t.name}?" } %>
+    <% end %>
+  </li>
   <span><%= t.description %> </span>
   
 <% end %>
 </ul>
-  
-<%= link_to "New Thread", new_forum_path %>
+
+<% if current_user.admin? %>
+  <%= link_to "New Thread", new_forum_path %>
+<% end %>

@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   
+  has_many :posts
+  has_many :topics
+  
   VALID_USERNAME_REGEX = /[a-z0-9_-]\z/
   validates :username, presence: true, uniqueness: true, length: { maximum: 16 }, :format => { :with => VALID_USERNAME_REGEX }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
