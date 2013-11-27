@@ -7,6 +7,7 @@
   
   <li><%= link_to t.name, t %>
     <% if current_user.admin? %>
+    | <%= link_to 'edit', edit_forum_path(t) %>
     | <%= link_to 'delete', t, method: :delete, data: { confirm: "You sure you want to delete the thread #{t.name}?" } %>
     <% end %>
   </li>

@@ -1,10 +1,5 @@
 class TopicsController < ApplicationController
-  
-  before_action :admin_user, only: :destroy
-  
-  def index
-  end
-  
+    
   def new
     forum = Forum.find(params[:forum_id])
     @topic = forum.topics.build
@@ -17,8 +12,8 @@ class TopicsController < ApplicationController
     @topic.last_poster_id = current_user.id
     @topic.last_post_at = Time.now
     @topic.user_id = current_user.id
-    post = @topic.posts.build(params[:content])
-    if @topic.save and post.save then
+    @topic.posts[0].user_id = current_user.id
+    if @topic.save then
       flash[:success] = "Topic Created!"
       redirect_to @topic
     else
@@ -30,19 +25,14 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
   end
   
-  def edit
-  end
-  
-  def update
-  end
-  
   def destroy
     @topic = Topic.find(params[:id])
-    if current_user.admin? then
+    if current_user.admin? or current_user?(@topic.user) then
       @topic.destroy
-      flash[:success] = @topic.title + " destroyed!"
+      flash[:success] = @topic.title + " deleted!"
       redirect_to :back
     else
+      flash[:warning] = "You don't have the authority to do that boy!"
       redirect_to root_path
     end
   end
@@ -50,7 +40,7 @@ class TopicsController < ApplicationController
   private
   
   def topic_params
-    params.require(:topic).permit(:title)
+    params.require(:topic).permit(:title, :posts_attributes => [:id, :user_id, :topic_id, :content])
   end
-  
+    
 end

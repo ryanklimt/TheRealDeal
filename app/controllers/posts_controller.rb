@@ -1,8 +1,5 @@
 class PostsController < ApplicationController
   
-  def index
-  end
-  
   def new
     topic = Topic.find(params[:topic_id])
     @post = topic.posts.build
@@ -10,7 +7,7 @@ class PostsController < ApplicationController
   
   def create
     topic = Topic.find(params[:topic_id])
-    @post = topic.posts.build(topic_params)
+    @post = topic.posts.build(post_params)
     @post.user_id = current_user.id
     if @post.save then
       flash[:success] = "Post created!"
@@ -19,22 +16,36 @@ class PostsController < ApplicationController
       render 'new'
     end
   end
-  
-  def show
-  end
-  
+    
   def edit
+    @post = Post.find(params[:id])
   end
   
   def update
+    @post = Post.find(params[:id])
+    if current_user?(@post.user) and @post.update_attributes(post_params) then
+      flash[:success] = "Post Updated!"
+      redirect_to topic_path(@post.topic_id)
+    else
+      render 'edit'
+    end
   end
   
   def destroy
+    @post = Post.find(params[:id])
+    if current_user?(@post.user) or current_user.admin? then
+      @post.destroy
+      flash[:success] = "Post Deleted!"
+      redirect_to :back
+    else
+      flash[:danger] = "Something went wrong!"
+      redirect_to root_path
+    end
   end
   
   private
   
-  def topic_params
+  def post_params
     params.require(:post).permit(:content)
   end
   

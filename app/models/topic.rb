@@ -6,6 +6,6 @@ class Topic < ActiveRecord::Base
   
   validates :title, presence: true
   
-  accepts_nested_attributes_for :posts, :reject_if => lambda { |a| a[:content].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :posts, allow_destroy: true
   
 end

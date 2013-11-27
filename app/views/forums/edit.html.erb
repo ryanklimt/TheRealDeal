@@ -1,0 +1,11 @@
+<% @title = "Edit Thread" %>
+
+<h1>Edit <%= @forum.name %> </h1>
+
+<%= form_for @forum do |t| %>
+
+  <%= render "forum_form", f: t %>
+
+  <%= t.submit "Update Thread", class: "btn btn-primary" %>
+
+<% end %>

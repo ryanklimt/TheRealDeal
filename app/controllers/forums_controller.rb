@@ -29,6 +29,13 @@ class ForumsController < ApplicationController
   end
   
   def update
+    @forum = Forum.find(params[:id])
+    if current_user.admin? and @forum.update_attributes(forum_params) then
+      flash[:success] = "Successfully Updated!"
+      redirect_to forums_path
+    else
+      render 'edit'
+    end
   end
   
   def destroy

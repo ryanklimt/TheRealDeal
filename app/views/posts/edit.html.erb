@@ -1,0 +1,11 @@
+<% @title = "Edit Post" %>
+
+<h1> Edit Post </h1>
+
+<%= form_for @post do |p| %>
+
+  <%= render "post_form", f: p %>
+
+  <%= p.submit "Update Post", class: "btn btn-primary" %>
+
+<% end %>

@@ -5,7 +5,7 @@
 <% for topic in @forum.topics %>
 
   <li>Title: <%= link_to topic.title, topic %>
-    <% if current_user.admin? then %>
+    <% if current_user.admin? or current_user?(topic.user) then %>
       | <%= link_to 'delete', topic, method: :delete, data: { confirm: "You sure you want to delete #{topic.title}?" } %>
     <% end %>
   </li>

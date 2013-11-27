@@ -36,7 +36,7 @@ module SessionsHelper
   end
   
   def admin_user
-    redirect_to root_path unless current_user.admin?
+    redirect_to root_path, :flash => { warning: "You must be an admin to do that." } unless current_user.admin?
   end
   
 end
