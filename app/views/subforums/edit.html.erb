@@ -1,0 +1,11 @@
+<% @title = "Edit Sub-Thread" %>
+
+<h1>Edit <%= @sforum.name %> </h1>
+
+<%= form_for @sforum do |t| %>
+
+  <%= render "subforum_form", f: t %>
+
+  <%= t.submit "Update Sub-Thread", class: "btn btn-primary" %>
+
+<% end %>

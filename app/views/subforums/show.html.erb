@@ -1,0 +1,17 @@
+<% @title = @sforum.name %>
+
+<h1><%= @sforum.name %> </h1>
+
+<span>&laquo;<%= link_to " Back", forum_path(@sforum.forum_id) %></span>
+
+<% for topic in @sforum.topics %>
+
+  <li>Title: <%= link_to topic.title, topic %>
+    <% if (signed_in? and current_user.admin?) or current_user?(topic.user) then %>
+      | <%= link_to 'delete', topic, method: :delete, data: { confirm: "You sure you want to delete #{topic.title}?" } %>
+    <% end %>
+  </li>
+
+<% end %>
+
+<p><%= link_to "New Topic", new_subforum_topic_path(@sforum.id) %></p>

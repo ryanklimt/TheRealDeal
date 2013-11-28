@@ -1,17 +1,18 @@
 class TopicsController < ApplicationController
-    
+  
+  before_action :ensure_logged_in, only: [:new, :create, :edit, :update, :destroy]
+  
   def new
-    forum = Forum.find(params[:forum_id])
-    @topic = forum.topics.build
+    sforum = Subforum.find(params[:subforum_id])
+    @topic = sforum.topics.build
     post = @topic.posts.build
   end
   
   def create
-    forum = Forum.find(params[:forum_id])
-    @topic = forum.topics.build(topic_params)
+    sforum = Subforum.find(params[:subforum_id])
+    @topic = sforum.topics.build(topic_params)
     @topic.last_poster_id = current_user.id
     @topic.last_post_at = Time.now
-    @topic.user_id = current_user.id
     @topic.posts[0].user_id = current_user.id
     if @topic.save then
       flash[:success] = "Topic Created!"
@@ -40,7 +41,7 @@ class TopicsController < ApplicationController
   private
   
   def topic_params
-    params.require(:topic).permit(:title, :posts_attributes => [:id, :user_id, :topic_id, :content])
+    params.require(:topic).permit(:title, :posts_attributes => [:content]).merge(:user_id => current_user.id)
   end
     
 end

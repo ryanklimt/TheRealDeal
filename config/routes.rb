@@ -9,6 +9,9 @@ UnknownBusiness::Application.routes.draw do
   
   resources :users
   resources :forums do
+    resources :subforums, shallow: true
+  end
+  resources :subforums do
     resources :topics, shallow: true
   end
   resources :topics do

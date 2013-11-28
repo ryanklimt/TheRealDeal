@@ -39,4 +39,8 @@ module SessionsHelper
     redirect_to root_path, :flash => { warning: "You must be an admin to do that." } unless current_user.admin?
   end
   
+  def ensure_logged_in
+    redirect_to login_path, :flash => { warning: "You must be logged in to do that." } unless signed_in?
+  end
+  
 end

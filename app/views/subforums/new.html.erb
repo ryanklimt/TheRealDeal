@@ -1,0 +1,11 @@
+<% @title = "New Sub-Thread" %>
+
+<h1>New Sub-Thread</h1>
+
+<%= form_for [@sforum.forum, @sforum] do |f| %>
+
+  <%= render "subforum_form", f: f %>
+
+  <%= f.submit "Create Sub-Thread", class: "btn btn-primary" %>
+
+<% end %>

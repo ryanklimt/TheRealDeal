@@ -6,7 +6,7 @@
 <% @forums.each do |t| %>
   
   <li><%= link_to t.name, t %>
-    <% if current_user.admin? %>
+    <% if signed_in? and current_user.admin? %>
     | <%= link_to 'edit', edit_forum_path(t) %>
     | <%= link_to 'delete', t, method: :delete, data: { confirm: "You sure you want to delete the thread #{t.name}?" } %>
     <% end %>
@@ -16,6 +16,6 @@
 <% end %>
 </ul>
 
-<% if current_user.admin? %>
+<% if signed_in? and current_user.admin? %>
   <%= link_to "New Thread", new_forum_path %>
 <% end %>

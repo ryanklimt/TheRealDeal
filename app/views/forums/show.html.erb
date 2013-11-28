@@ -2,14 +2,22 @@
 
 <h1><%= @forum.name %> </h1>
 
-<% for topic in @forum.topics %>
+<span>&laquo;<%= link_to " Back", forums_path %></span>
 
-  <li>Title: <%= link_to topic.title, topic %>
-    <% if current_user.admin? or current_user?(topic.user) then %>
-      | <%= link_to 'delete', topic, method: :delete, data: { confirm: "You sure you want to delete #{topic.title}?" } %>
+<ul>
+<% for subforum in @forum.subforums %>
+
+  <li>Title: <%= link_to subforum.name, subforum %>
+    <% if current_user?(subforum.user) then %>
+    | <%= link_to "edit", edit_subforum_path(subforum) %>
+    <% end %>
+    <% if (current_user and current_user.admin?) or current_user?(subforum.user) then %>
+      | <%= link_to 'delete', subforum, method: :delete, data: { confirm: "You sure you want to delete #{subforum.name}?" } %>
     <% end %>
   </li>
+  <span><%= subforum.description %></span>
 
 <% end %>
+</ul>
 
-<p><%= link_to "New Topic", new_forum_topic_path(@forum.id) %></p>
+<p><%= link_to "New Sub-Thread", new_forum_subforum_path(@forum.id) %></p>

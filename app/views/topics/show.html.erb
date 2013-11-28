@@ -2,13 +2,15 @@
 
 <h1> <%= @topic.title %> </h1>
 
+<span>&laquo;<%= link_to " Back", subforum_path(@topic.subforum.id) %></span>
+
 <% for post in @topic.posts %>
 
   <p><%= post.user.username %>: <%= post.content %>
   <% if current_user?(post.user) then %>
     | <%= link_to "edit", edit_post_path(post) %>
   <% end %>
-  <% if current_user.admin? or current_user?(post.user) then %>
+  <% if (signed_in? and current_user.admin?) or current_user?(post.user) then %>
       | <%= link_to "delete", post, method: :delete, data: { confirm: "You sure you want to delete this post?" } %>
   <% end %></p>
 
