@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131128005626) do
+ActiveRecord::Schema.define(version: 20131205044440) do
 
   create_table "forums", force: true do |t|
     t.string   "name"
@@ -63,5 +63,14 @@ ActiveRecord::Schema.define(version: 20131128005626) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
   add_index "users", ["username"], name: "index_users_on_username", unique: true
+
+  create_table "wallposts", force: true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "wallposts", ["user_id", "created_at"], name: "index_wallposts_on_user_id_and_created_at"
 
 end

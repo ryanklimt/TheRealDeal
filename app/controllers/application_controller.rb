@@ -5,5 +5,6 @@ class ApplicationController < ActionController::Base
   
   helper :users
   include SessionsHelper
+  include WallpostsHelper
   
 end

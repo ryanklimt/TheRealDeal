@@ -8,6 +8,8 @@ UnknownBusiness::Application.routes.draw do
   get 'contact', to: "static_pages#contact", as: 'contact'
   
   resources :users
+  resources :wallposts, only: [:create, :destroy]
+  
   resources :forums do
     resources :subforums, shallow: true
   end
