@@ -1,6 +1,6 @@
 <% @title = "Edit " + @user.username %>
 
-<h1> Edit <%= @user.username %></h1>
+<h1>Edit <%= @user.username %></h1>
 
 <% if @user.errors.any? %>
     <div class="alert alert-danger"> 
@@ -26,11 +26,15 @@
 	<%= f.label :username, "Username*" %>
 	<%= f.text_field :username, class: 'form-control' %>
 </div>
-
 <div class='form-group'>
 	<%= f.label :email, "Email*" %>
 	<%= f.text_field :email, class: 'form-control' %>
 </div>
+<div class='form-group'>
+	<%= f.label :private, "Privacy" %>
+	<%= f.text_field :private, class: 'form-control' %>
+</div>
+
 <%= f.submit "Update Profile", class: "btn btn-primary" %>
 <% end %>
 
