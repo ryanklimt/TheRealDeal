@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(update_params) then
       flash[:success] = "Successfully updated!"
-      redirect_to @user
+      redirect_to edit_user_path(@user)
     else
       render 'edit'
     end
@@ -57,11 +57,11 @@ class UsersController < ApplicationController
   private
   
     def user_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation )
+      params.require(:user).permit(:username, :email, :password, :password_confirmation)
     end
     
     def update_params
-      params.require(:user).permit(:firstname, :lastname, :username, :email)
+      params.require(:user).permit(:firstname, :lastname, :username, :email, :private)
     end
     
     def correct_user

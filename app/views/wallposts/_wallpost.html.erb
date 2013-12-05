@@ -3,7 +3,7 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words(wallpost.created_at) %> ago.
   </span>
-  <% if current_user?(wallpost.user) or current_user.admin? %>
+  <% if current_user?(wallpost.user) or !current_user.nil? and current_user.admin? %>
     <%= link_to "delete", wallpost, method: :delete,
                                      data: { confirm: "You sure?" },
                                      title: wallpost.content %>
