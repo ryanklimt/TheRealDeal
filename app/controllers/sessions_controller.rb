@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if @user and @user.authenticate(params[:session][:password])
       sign_in @user
       flash[:success] = "Welcome " + @user.username.humanize + "!"
-      redirect_to "/" + @user
+      redirect_to "/" + @user.username
     else
       flash.now[:danger] = "Invalid username or password!"
       render 'new'
