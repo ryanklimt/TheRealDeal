@@ -1,6 +1,6 @@
 <%= link_to gravatar_for(current_user), current_user %>
 <h1>
-  <%= current_user.username %>
+  <%= current_user.username.humanize %>
 </h1>
 <span>
   <%= link_to "view my profile", current_user %>

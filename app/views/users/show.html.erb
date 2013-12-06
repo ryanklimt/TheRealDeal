@@ -5,7 +5,7 @@
     <section>
       <h1>
         <%= gravatar_for @user %>
-        <%= @user.username %>
+        <%= @user.username.humanize %>
       </h1>
       <span><b>Email: </b><%= @user.email %></span>
       <span><b>First Name: </b><%= @user.firstname %></span>
