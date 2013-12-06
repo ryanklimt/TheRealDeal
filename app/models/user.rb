@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :topics
   
+  default_scope -> { order('created_at DESC') }
+  
   validates :username, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }, :unless => lambda {|u| u.password.nil? }
