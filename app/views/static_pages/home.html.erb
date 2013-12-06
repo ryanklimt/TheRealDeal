@@ -1,4 +1,5 @@
 <% @title = "Home" %>
+<p>A <b>relationship</b> is the way in which two or more concepts, objects, or people are connected, or the state of being connected.</p>
 <% if signed_in? %>
 <div class="row">
 	<aside class="span4">
@@ -13,9 +14,9 @@
 		</section>
 	</aside>
 	<div class="span8">
-		<h3>Wallpost Feed</h3>
-		<%= render 'shared/feed' %>
-	</div>
+      <h3>Your Relationships Feed</h3>
+      <%= render 'shared/feed' %>
+    </div>
 </div>
 <% else %>
 <div class="center hero-unit">
