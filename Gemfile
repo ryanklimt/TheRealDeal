@@ -13,6 +13,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
+gem 'honeypot-captcha'
 
 group :test do
   gem 'capybara'
