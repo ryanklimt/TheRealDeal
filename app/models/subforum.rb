@@ -4,7 +4,7 @@ class Subforum < ActiveRecord::Base
   belongs_to :user
   has_many :topics, :dependent => :destroy
   
-  validates :name, presence: true
-  validates :description, presence: true
+  validates :name, presence: true, length: { maximum: 64 }
+  validates :description, presence: true, length: { maximum: 512 }
   
 end
