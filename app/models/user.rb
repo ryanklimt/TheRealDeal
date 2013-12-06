@@ -44,6 +44,9 @@ class User < ActiveRecord::Base
     relationships.find_by(followed_id: other_user.id).destroy!
   end
   
+  def to_param
+    self.username
+  end  
   
   private
   

@@ -17,53 +17,53 @@ class UsersController < ApplicationController
     if @user.save then
       sign_in @user
       flash[:success] = "Succesfully created an account!"
-      redirect_to @user
+      redirect_to '/' + @user.username
     else
       render 'new'
     end
   end
   
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_username!(params[:username])
     @wallposts = @user.wallposts.paginate(page: params[:page])
   end
   
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by_username!(params[:username])
   end
   
   def update
-    @user = User.find(params[:id])
+    @user = User.find_by_username!(params[:username])
     if @user.update_attributes(update_params) then
       flash[:success] = "Successfully updated!"
-      redirect_to @user
+      redirect_to '/' + @user.username
     else
       render 'edit'
     end
   end
   
   def destroy
-    @user = User.find(params[:id])
-    if !current_user?(@user) then
+    @user = User.find_by_username(params[:username])
+    if current_user.admin? && !current_user?(@user) then
       @user.destroy
       flash[:success] = @user.username + " deleted!"
-      redirect_to users_path
+      redirect_to root_path
     else
       flash[:danger] = "You tried to delete yourself you idiot!"
-      redirect_to users_path
+      redirect_to root_path
     end
   end
   
   def following
     @t = "Following"
-    @user = User.find(params[:id])
+    @user = User.find_by_username!(params[:username])
     @users = @user.followed_users.paginate(page: params[:page])
     render 'show_follow'
   end
 
   def followers
     @t = "Followers"
-    @user = User.find(params[:id])
+    @user = User.find_by_username!(params[:username])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
@@ -79,8 +79,10 @@ class UsersController < ApplicationController
     end
     
     def correct_user
-      @user = User.find(params[:id])
-      redirect_to root_path unless current_user?(@user)
+      @user = User.find_by_username(params[:username])
+      if(!current_user.admin? && !current_user?(@user))
+        redirect_to root_path
+      end
     end
   
 end
