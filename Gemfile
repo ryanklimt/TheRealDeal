@@ -1,10 +1,8 @@
 source 'https://rubygems.org'
+ruby '1.9.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
-
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -21,6 +19,10 @@ gem 'faker', '1.1.2'
 gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate'
 
+group :development do
+  gem 'sqlite3'
+end
+
 group :test do
   gem 'capybara'
   gem 'factory_girl_rails'
@@ -31,6 +33,11 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'guard'
   gem 'guard-rspec', require: false
+end
+
+group :production do
+  gem 'pg', '0.15.1'
+  gem 'rails_12factor', '0.0.2'
 end
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
