@@ -8,7 +8,8 @@ class WallpostsController < ApplicationController
       flash[:success] = "Post Created!"
       redirect_to root_path
     else
-      render 'static_pages/home'
+      flash[:danger] = "You need to have content!"
+      redirect_to root_path
     end
   end
   
