@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     @user ||= User.find_by(username: params[:session][:email_username].downcase) unless @user = User.find_by(email: params[:session][:email_username].downcase)
     if @user and @user.authenticate(params[:session][:password])
       sign_in @user
-      flash[:success] = "Welcome " + @user.username + "!"
+      flash[:success] = "Welcome " + @user.username.humanize + "!"
       redirect_to @user
     else
       flash.now[:danger] = "Invalid username or password!"
