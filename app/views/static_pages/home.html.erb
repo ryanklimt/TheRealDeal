@@ -4,17 +4,18 @@
 	<aside class="span4">
 		<section>
 			<%= render 'shared/user_info' %>
+			<%= render 'shared/stats' %>
 		</section>
 		<section>
 			<% if signed_in? then %>
-				<%= render 'shared/wallpost_form' %>
+			<%= render 'shared/wallpost_form' %>
 			<% end %>
 		</section>
 	</aside>
 	<div class="span8">
-      <h3>Wallpost Feed</h3>
-      <%= render 'shared/feed' %>
-    </div>
+		<h3>Wallpost Feed</h3>
+		<%= render 'shared/feed' %>
+	</div>
 </div>
 <% else %>
 <div class="center hero-unit">

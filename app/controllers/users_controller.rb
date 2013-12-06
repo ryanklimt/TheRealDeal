@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_action :signed_in_user, only: [:index, :show, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:index, :show, :edit, :update, :destroy, :following, :followers]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(update_params) then
       flash[:success] = "Successfully updated!"
-      redirect_to edit_user_path(@user)
+      redirect_to @user
     else
       render 'edit'
     end
@@ -52,6 +52,20 @@ class UsersController < ApplicationController
       flash[:danger] = "You tried to delete yourself you idiot!"
       redirect_to users_path
     end
+  end
+  
+  def following
+    @t = "Following"
+    @user = User.find(params[:id])
+    @users = @user.followed_users.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @t = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
   end
   
   private

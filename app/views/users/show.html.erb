@@ -11,9 +11,11 @@
       <span><b>First Name: </b><%= @user.firstname %></span>
       <span><b>Last Name: </b><%= @user.lastname %></span>
     </section>
+      <%= render 'shared/stats' %>
   </aside>
   
   <div class="span8">
+  	<%= render 'follow_form' if signed_in? %>
     <% if @user.wallposts.any? %>
       <h3><%= "Post".pluralize(@user.wallposts.count)%>(<%= @user.wallposts.count %>)</h3>
       <ol class="microposts">

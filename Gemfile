@@ -21,6 +21,18 @@ gem 'faker', '1.1.2'
 gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate'
 
+group :test do
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'timecop'
+end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'guard'
+  gem 'guard-rspec', require: false
+end
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
