@@ -2,10 +2,10 @@ UnknownBusiness::Application.routes.draw do
   
   root 'static_pages#home'
   
-  get 'home', to: "static_pages#home", as: 'home'
-  get 'help', to: "static_pages#help", as: 'help'
-  get 'about', to: "static_pages#about", as: "about"
-  get 'contact', to: "static_pages#contact", as: 'contact'
+  get 'home', to: 'static_pages#home', as: 'home'
+  get 'help', to: 'static_pages#help', as: 'help'
+  get 'about', to: 'static_pages#about', as: 'about'
+  get 'contact', to: 'static_pages#contact', as: 'contact'
   
   resources :users, only: [:index, :create, :new]
   
@@ -24,15 +24,15 @@ UnknownBusiness::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   
   get 'signup', to: 'users#new', as: 'signup'
-  get 'login', to: "sessions#new", as: 'login'
-  delete 'logout', to: "sessions#destroy", as: 'logout'
-  get 'settings', to:'users#edit', as: 'settings'
+  get 'settings', to: 'users#edit', as: 'settings'
+  get 'login', to: 'sessions#new', as: 'login'
+  delete 'logout', to: 'sessions#destroy', as: 'logout'
   
-  match "/:username" => "users#show", via: "get"
-  match "/:username" => "users#update", via: "patch"
-  match "/:username" => "users#destroy", via: "delete"
-  match "/:username/following" => "users#following", via: "get"
-  match "/:username/followers" => "users#followers", via: "get"
+  match '/:username' => 'users#show', via: 'get'
+  match '/:username' => 'users#update', via: 'patch'
+  match '/:username' => 'users#destroy', via: 'delete'
+  match '/:username/following' => 'users#following', via: 'get'
+  match '/:username/followers' => 'users#followers', via: 'get'
   match '*path' => redirect('/'), via: :get
   resources :users, :path => '/'
 
