@@ -1,0 +1,5 @@
+<% if !@user.admin? and !@user.admin? then %>
+	<%= form_tag(@user.username, method: "put") do %>
+		<%= submit_tag("Make Admin", class: "btn btn-large btn-primary", :confirm => "Are you sure you want to make " + @user.username + " an admin? It can't be redone.") %>
+	<% end %>
+<% end %>

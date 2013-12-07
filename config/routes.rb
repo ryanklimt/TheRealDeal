@@ -29,12 +29,14 @@ UnknownBusiness::Application.routes.draw do
   delete 'logout', to: 'sessions#destroy', as: 'logout'
   
   match '/:username' => 'users#show', via: 'get'
+  match '/:username' => 'users#admin', via: 'put'
   match '/:username' => 'users#update', via: 'patch'
   match '/:username' => 'users#destroy', via: 'delete'
   match '/:username/following' => 'users#following', via: 'get'
   match '/:username/followers' => 'users#followers', via: 'get'
+  resources :users, :path => '/', only: [:show]
+  
   match '*path' => redirect('/'), via: :get
-  resources :users, :path => '/'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

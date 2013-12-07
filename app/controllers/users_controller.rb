@@ -68,6 +68,16 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
   
+  def admin
+    @user = User.find_by_username(params[:username])
+    if current_user.admin? && @user.update_attributes(:admin => true) then
+      flash[:success] = "Successfully updated!"
+      redirect_to '/' + @user.username
+    else
+      render 'edit'
+    end
+  end
+  
   private
   
     def user_params
