@@ -7,8 +7,7 @@ UnknownBusiness::Application.routes.draw do
   get 'about', to: "static_pages#about", as: "about"
   get 'contact', to: "static_pages#contact", as: 'contact'
   
-  resources :users, only: [:index] do
-  end
+  resources :users, only: [:index, :create, :new]
   
   resources :relationships, only: [:create, :destroy]
   resources :wallposts, only: [:create, :destroy]
