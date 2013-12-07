@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   
   default_scope -> { order('created_at DESC') }
   
-  validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 20 },
+  validates :username, presence: true, format: { with: /a-zA-Z0-9_/ }, uniqueness: { case_sensitive: false }, length: { maximum: 20 },
   :exclusion => %w(about settings home forums subforums users relationships posts wallposts topics contact help login logout sessions signup)
   validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }, :unless => lambda {|u| u.password.nil? }
