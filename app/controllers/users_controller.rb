@@ -70,7 +70,7 @@ class UsersController < ApplicationController
   
   def admin
     @user = User.find_by_username(params[:username])
-    if @user.update_attributes(:admin => true) then
+    if current_user.admin? && @user.update_attributes(:admin => true) then
       flash[:success] = "Successfully updated!"
       redirect_to '/' + @user.username
     else

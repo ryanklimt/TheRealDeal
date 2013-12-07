@@ -35,6 +35,7 @@ UnknownBusiness::Application.routes.draw do
   match '/:username/following' => 'users#following', via: 'get'
   match '/:username/followers' => 'users#followers', via: 'get'
   resources :users, :path => '/', only: [:show]
+  
   match '*path' => redirect('/'), via: :get
 
   # Example of regular route:
