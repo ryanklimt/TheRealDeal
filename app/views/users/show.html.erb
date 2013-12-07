@@ -18,6 +18,7 @@
   </aside>
   
   <div class="span8">
+  	<%= render 'admin' if current_user.admin? %>
   	<%= render 'follow_form' if signed_in? %>
     <% if @user.wallposts.any? %>
       <h3><%= "Post".pluralize(@user.wallposts.count)%>(<%= @user.wallposts.count %>)</h3>
