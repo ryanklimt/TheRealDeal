@@ -7,10 +7,7 @@ UnknownBusiness::Application.routes.draw do
   get 'about', to: "static_pages#about", as: "about"
   get 'contact', to: "static_pages#contact", as: 'contact'
   
-  resources :users do
-    member do
-      get :following, :followers
-    end
+  resources :users, only: [:index] do
   end
   
   resources :relationships, only: [:create, :destroy]
@@ -30,9 +27,9 @@ UnknownBusiness::Application.routes.draw do
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: "sessions#new", as: 'login'
   delete 'logout', to: "sessions#destroy", as: 'logout'
+  get 'settings', to:'users#edit', as: 'settings'
   
   match "/:username" => "users#show", via: "get"
-  match "/:username/edit" => "users#edit", via: "get"
   match "/:username" => "users#update", via: "patch"
   match "/:username" => "users#destroy", via: "delete"
   match "/:username/following" => "users#following", via: "get"

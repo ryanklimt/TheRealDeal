@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   
   before_action :signed_in_user, only: [:index, :show, :edit, :update, :destroy, :following, :followers]
-  before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   
   def index
@@ -29,7 +28,7 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find_by_username(params[:username])
+    @user = User.find(current_user.id)
   end
   
   def update
@@ -76,13 +75,6 @@ class UsersController < ApplicationController
     
     def update_params
       params.require(:user).permit(:username, :firstname, :lastname, :email, :private)
-    end
-    
-    def correct_user
-      @user = User.find(current_user.id)
-      if(!current_user.admin? && !current_user?(@user))
-        redirect_to root_path
-      end
     end
   
 end
