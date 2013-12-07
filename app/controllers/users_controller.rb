@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     if current_user.admin? && !current_user?(@user) then
       @user.destroy
       flash[:success] = @user.username + " deleted!"
-      redirect_to root_path
+      redirect_to users_path
     else
       flash[:danger] = "You tried to delete yourself you idiot!"
       redirect_to root_path
