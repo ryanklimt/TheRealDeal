@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find_by_username!(params[:username])
+    @wallpost = @user.wallposts.build
     @wallposts = @user.wallposts.paginate(page: params[:page])
   end
   

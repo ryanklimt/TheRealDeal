@@ -6,7 +6,7 @@ class WallpostsController < ApplicationController
     @wallpost = current_user.wallposts.build(wallpost_params)
     if @wallpost.save then 
       flash[:success] = "Post Created!"
-      redirect_to root_path
+      redirect_to :back
     else
       flash[:danger] = "You need to have content!"
       redirect_to root_path
@@ -18,7 +18,7 @@ class WallpostsController < ApplicationController
     if current_user?(@wallpost.user) or current_user.admin? then
       @wallpost.destroy
       flash[:success] = "Post Deleted!"
-      redirect_to request.original_url
+      redirect_to :back
     else
       flash[:danger] = "You can't delete other peoples posts!"
       redirect_to current_user

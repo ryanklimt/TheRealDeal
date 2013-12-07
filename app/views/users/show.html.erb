@@ -10,8 +10,11 @@
       <span><b>Email: </b><%= @user.email %></span>
       <span><b>First Name: </b><%= @user.firstname %></span>
       <span><b>Last Name: </b><%= @user.lastname %></span>
-    </section>
-      <%= render 'shared/stats' %>
+	</section>
+   	<%= render 'shared/stats' %>
+	<% if current_user?(@user) then %>
+		<%= render 'shared/wallpost_form' %>
+	<% end %>
   </aside>
   
   <div class="span8">
