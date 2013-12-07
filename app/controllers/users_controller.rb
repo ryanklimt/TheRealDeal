@@ -29,11 +29,11 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find_by_username!(params[:username])
+    @user = User.find_by_username(params[:username])
   end
   
   def update
-    @user = User.find_by_username!(params[:username])
+    @user = User.find(current_user.id)
     if @user.update_attributes(update_params) then
       flash[:success] = "Successfully updated!"
       redirect_to '/' + @user.username
@@ -75,7 +75,7 @@ class UsersController < ApplicationController
     end
     
     def update_params
-      params.require(:user).permit(:firstname, :lastname, :username, :email, :private)
+      params.require(:user).permit(:username, :firstname, :lastname, :email, :private)
     end
     
     def correct_user

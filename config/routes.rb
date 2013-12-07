@@ -33,7 +33,10 @@ UnknownBusiness::Application.routes.draw do
   
   match "/:username" => "users#show", via: "get"
   match "/:username/edit" => "users#edit", via: "get"
+  match "/:username" => "users#update", via: "patch"
   match "/:username" => "users#destroy", via: "delete"
+  match "/:username/following" => "users#following", via: "get"
+  match "/:username/followers" => "users#followers", via: "get"
   match '*path' => redirect('/'), via: :get
   resources :users, :path => '/'
 
