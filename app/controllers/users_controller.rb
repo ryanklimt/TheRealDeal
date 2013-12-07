@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     end
     
     def correct_user
-      @user = User.find_by_username(params[:username])
+      @user = User.find(current_user.id)
       if(!current_user.admin? && !current_user?(@user))
         redirect_to root_path
       end
