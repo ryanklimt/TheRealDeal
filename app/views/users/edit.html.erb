@@ -38,3 +38,7 @@
 <%= f.submit "Update Profile", class: "btn btn-primary" %>
 <% end %>
 
+<div class="form-group">
+	<%= gravatar_for @user %>
+	<%= link_to "change", "http://gravatar.com/emails", target: "_blank" %>
+</div>

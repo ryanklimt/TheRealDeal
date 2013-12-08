@@ -4,7 +4,7 @@
   <aside class="span4">
     <section>
       <h1>
-        <%= gravatar_for(@user, 120) %>
+        <%= link_to gravatar_for(@user, 120), @user.username %>
         <%= @user.username.humanize %>
       </h1>
       <span><b>Email: </b><%= @user.email %></span>
