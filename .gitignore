@@ -18,6 +18,9 @@
 #test
 /test
 
+#enviroments
+/config/enviroments/development.rb
+
 #sshkeygen
 sshkeygen
 sshkeygen.pub

@@ -2,4 +2,4 @@ Welcome to the site <%= @user.username %>!
 
 To verify your email, click the URL below.
 
-<%= edit_password_reset_path(@user.password_reset_token) %>
+<%= verify_path(@user.email_auth_token) %>

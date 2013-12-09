@@ -55,6 +55,9 @@ class User < ActiveRecord::Base
   end
   
   def send_verify_email
+    generate_token(:email_auth_token)
+    save!
+    UserMailer.verify_email(self).deliver
   end
   
   private

@@ -17,8 +17,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save then
+      @user.send_verify_email
       sign_in(@user, false)
-      flash[:success] = "Welcome to the site #{@user.username}!"
+      flash[:success] = "Welcome to the site #{@user.username}! An email has been sent to verify your account."
       redirect_to user_path(@user.username)
     else
       render 'new'
@@ -47,6 +48,13 @@ class UsersController < ApplicationController
       @user.username = current_user.username
       render 'edit'
     end
+  end
+  
+  def verify
+    @user = User.find_by_email_auth_token!(params[:email_auth_token])
+    @user.update_attributes(verify_email: true)
+    flash[:success] = "Email has been verified!"
+    redirect_to user_path(@user.username)
   end
   
   # DELETE /:username
@@ -92,7 +100,7 @@ class UsersController < ApplicationController
   private
   
     def user_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation)
+      params.require(:user).permit(:username, :email, :gender, :password, :password_confirmation)
     end
     
     def update_params

@@ -1,6 +1,5 @@
 UnknownBusiness::Application.routes.draw do
   
-  get "password_resets/new"
   root 'static_pages#home'
   
   get 'home', to: 'static_pages#home', as: 'home'
@@ -27,8 +26,11 @@ UnknownBusiness::Application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   delete 'logout', to: 'sessions#destroy', as: 'logout'
   
+  resources :password_resets, only: [:new, :create, :edit, :update]
+  
   # User Routes
   resources :users, only: [:index, :create]
+  get 'verify/:email_auth_token', to: 'users#verify', as: 'verify'
   get 'signup', to: 'users#new', as: 'signup'
   get 'settings', to: 'users#edit'
   get ':username', to: "users#show", as: :user
@@ -37,8 +39,6 @@ UnknownBusiness::Application.routes.draw do
   put ':username', to: "users#admin", as: :admin
   get ':username/following', to: "users#following", as: :following
   get ':username/followers', to: "users#followers", as: :followers
-  
-  resources :password_resets
   
   match '*path' => redirect('/'), via: :get
 
