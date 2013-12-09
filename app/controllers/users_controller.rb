@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     if @user.save then
       sign_in @user
       flash[:success] = "Welcome to the site #{@user.username}!"
-      redirect_to user_profile(@user)
+      redirect_to user_path(@user.username)
     else
       render 'new'
     end
@@ -34,16 +34,17 @@ class UsersController < ApplicationController
   
   # GET /settings
   def edit
-    @user = User.find(current_user.id)
+    @user = User.find_by_username(current_user.username)
   end
   
   # PATCH /settings
   def update
-    @user = User.find(current_user.id)
+    @user = User.find_by_username(current_user.username)
     if @user.update_attributes(update_params) then
       flash[:success] = "Successfully updated!"
-      redirect_to user_profile(@user)
+      redirect_to user_path(@user.username)
     else
+      @user.username = current_user.username
       render 'edit'
     end
   end
@@ -82,7 +83,7 @@ class UsersController < ApplicationController
     @user = User.find_by_username(params[:username])
     if current_user.admin? && @user.update_attributes(:admin => true) then
       flash[:success] = "Successfully updated!"
-      redirect_to user_profile(@user)
+      redirect_to user_path(@user.username)
     else
       render 'edit'
     end

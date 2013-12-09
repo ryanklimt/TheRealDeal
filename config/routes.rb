@@ -7,7 +7,7 @@ UnknownBusiness::Application.routes.draw do
   get 'about', to: 'static_pages#about', as: 'about'
   get 'contact', to: 'static_pages#contact', as: 'contact'
   
-  resources :users, only: [:index, :create, :new]
+  resources :users, only: [:index]
   
   resources :relationships, only: [:create, :destroy]
   resources :wallposts, only: [:create, :destroy]
@@ -21,22 +21,22 @@ UnknownBusiness::Application.routes.draw do
   resources :topics do
     resources :posts, shallow: true
   end
+  
   resources :sessions, only: [:new, :create, :destroy]
   
-  get 'signup', to: 'users#new', as: 'signup'
-  get 'settings', to: 'users#edit', as: 'settings'
+  # Session Routes
   get 'login', to: 'sessions#new', as: 'login'
   delete 'logout', to: 'sessions#destroy', as: 'logout'
   
-  get 'threads', to: "forums#index", as: 'threads'
-  
-  match '/:username' => 'users#show', via: 'get'
-  match '/:username' => 'users#admin', via: 'put'
-  match '/:username' => 'users#update', via: 'patch'
-  match '/:username' => 'users#destroy', via: 'delete'
-  match '/:username/following' => 'users#following', via: 'get'
-  match '/:username/followers' => 'users#followers', via: 'get'
-  resources :users, :path => '/', only: [:show]
+  # User Routes
+  get 'signup', to: 'users#new', as: 'signup'
+  get 'settings', to: 'users#edit'
+  get ':username', to: "users#show", as: :user
+  patch ':username', to: "users#update"
+  delete ':username', to: "users#destroy"
+  put ':username', to: "users#admin", as: :admin
+  get ':username/following', to: "users#following", as: :following
+  get ':username/followers', to: "users#followers", as: :followers
   
   match '*path' => redirect('/'), via: :get
 

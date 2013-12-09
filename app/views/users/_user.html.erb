@@ -1,7 +1,7 @@
 <li>
-  <%= link_to gravatar_for(user), user_profile(user) %>
-  <%= link_to user.username, user_profile(user) %>
+  <%= link_to gravatar_for(user), user_path(user.username) %>
+  <%= link_to user.username, user_path(user.username) %>
   <% if current_user.admin? && !current_user?(user) && !user.admin? %>
-      | <%= link_to "delete", user_profile(user), method: :delete, data: { confirm: "You sure you want to delete #{user.username}?" } %>
+      | <%= link_to "delete", user_path(user.username), method: :delete, data: { confirm: "You sure you want to delete #{user.username}?" } %>
   <% end %>
 </li>

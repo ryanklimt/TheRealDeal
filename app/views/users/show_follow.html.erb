@@ -2,9 +2,9 @@
 <div class="row">
   <aside class="span4">
     <section>
-      <%= gravatar_for @user %>
+      <%= link_to gravatar_for(@user), user_path(@user.username) %>
       <h1><%= @user.username %></h1>
-      <span><%= link_to 'view my profile', user_profile(@user) %></span>
+      <span><%= link_to 'view my profile', user_path(@user.username) %></span>
       <span><b>Posts</b> <%= @user.wallposts.count %></span>
     </section>
     <section>
@@ -12,7 +12,7 @@
       <% if @users.any? %>
         <div class="user_avatars">
           <% @users.each do |user| %>
-            <%= link_to gravatar_for(user, 40), user_profile(user) %>
+            <%= link_to gravatar_for(user, 40), user_path(user.username) %>
           <% end %>
         </div>
       <% end %>
