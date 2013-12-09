@@ -47,7 +47,7 @@ module SessionsHelper
   end
   
   def ensure_logged_in
-    redirect_to login_path, :flash => { warning: "You must be logged in to do that." } unless signed_in?
+    redirect_to login_path, :flash => { info: "You must be logged in to do that." } unless signed_in?
   end
   
 end

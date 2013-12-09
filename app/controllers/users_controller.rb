@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save then
-      sign_in @user
+      sign_in(@user, false)
       flash[:success] = "Welcome to the site #{@user.username}!"
       redirect_to user_path(@user.username)
     else
@@ -96,7 +96,7 @@ class UsersController < ApplicationController
     end
     
     def update_params
-      params.require(:user).permit(:username, :firstname, :lastname, :email, :private)
+      params.require(:user).permit(:username, :firstname, :lastname, :email, :private, :city, :state, :country, :gender, :birthday, :status, :bio)
     end
   
 end

@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   
   before_save { self.email = email.downcase }
   before_create :create_remember_token
+  before_create { generate_token(:auth_token) }
   
   has_many :wallposts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
@@ -14,9 +15,11 @@ class User < ActiveRecord::Base
   default_scope -> { order('created_at DESC') }
   
   validates :username, presence: true, format: { with: /^[a-zA-Z0-9_-]+$/, multiline: true}, uniqueness: { case_sensitive: false }, length: { maximum: 20 },
-  :exclusion => %w(about settings home forums subforums users relationships posts wallposts topics contact help login logout sessions signup)
+  :exclusion => %w(about settings home forums subforums users relationships posts wallposts topics contact help login logout sessions signup admin)
   validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }, :unless => lambda {|u| u.password.nil? }
+  
+  validate :gender, inclusion: %w(Male Female)
   
   has_secure_password
   
@@ -44,10 +47,26 @@ class User < ActiveRecord::Base
     relationships.find_by(followed_id: other_user.id).destroy!
   end
   
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    UserMailer.password_reset(self).deliver
+  end
+  
+  def send_verify_email
+  end
+  
   private
   
     def create_remember_token
       self.remember_token = User.encrypt(User.new_remember_token)
+    end
+    
+    def generate_token(column)
+      begin
+        self[column] = SecureRandom.urlsafe_base64
+      end while User.exists?(column => self[column])
     end
   
 end
