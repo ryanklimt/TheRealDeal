@@ -1,9 +1,9 @@
-<%= link_to gravatar_for(current_user), current_user.username %>
+<%= link_to gravatar_for(current_user), user_profile(current_user) %>
 <h1>
-  <%= current_user.username.humanize %>
+  <%= current_user.username %>
 </h1>
 <span>
-  <%= link_to "view my profile", current_user.username %>
+  <%= link_to "view my profile", user_profile(current_user) %>
 </span>
 <span>
   <%= pluralize(current_user.wallposts.count, "post") %>

@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+  
+  # GET /
   def home
     if signed_in? then
       @wallpost = current_user.wallposts.build
@@ -6,12 +8,15 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  # GET /help
   def help
   end
   
+  # GET /about
   def about
   end
   
+  # GET /contact
   def contact
   end
   

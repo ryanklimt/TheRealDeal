@@ -51,8 +51,8 @@ class ForumsController < ApplicationController
   
   private
   
-  def forum_params
-    params.require(:forum).permit(:name, :description)
-  end
+    def forum_params
+      params.require(:forum).permit(:name, :description)
+    end
   
 end

@@ -1,11 +1,11 @@
-<% @title = @user.username.humanize + "'s" + " Profile"%>
+<% @title = @user.username + "'s" + " Profile"%>
 
 <div class="row">
   <aside class="span4">
     <section>
       <h1>
         <%= link_to gravatar_for(@user, 120), @user.username %>
-        <%= @user.username.humanize %>
+        <%= @user.username %>
       </h1>
       <span><b>Email: </b><%= @user.email %></span>
       <span><b>First Name: </b><%= @user.firstname %></span>

@@ -7,4 +7,14 @@ module UsersHelper
     image_tag(gravatar_url, alt: user.username, class: "gravatar", :size => size.to_s )
   end
   
+  
+  # This is extremely jank
+  def user_profile(user)
+    "/" + user.username
+  end
+  
+  def capfirst(str)
+    str = str.slice(0,1).capitalize + str.slice(1..-1)
+  end
+  
 end

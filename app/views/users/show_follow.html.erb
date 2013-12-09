@@ -4,7 +4,7 @@
     <section>
       <%= gravatar_for @user %>
       <h1><%= @user.username %></h1>
-      <span><%= link_to 'view my profile', '/' + @user.username %></span>
+      <span><%= link_to 'view my profile', user_profile(@user) %></span>
       <span><b>Posts</b> <%= @user.wallposts.count %></span>
     </section>
     <section>
@@ -12,7 +12,7 @@
       <% if @users.any? %>
         <div class="user_avatars">
           <% @users.each do |user| %>
-            <%= link_to gravatar_for(user, 40), '/' + user.username %>
+            <%= link_to gravatar_for(user, 40), user_profile(user) %>
           <% end %>
         </div>
       <% end %>
