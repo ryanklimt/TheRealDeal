@@ -5,7 +5,7 @@ describe "PasswordResets" do
     user = FactoryGirl.create(:user)
     visit login_path
     click_link "Forget your password?"
-    fill_in "Email", with: user.email
+    fill_in "Username or Email", with: user.email
     click_button "Reset Password"
     current_path.should eq(root_path)
     page.should have_content("Email has been sent with password reset instructions.")
@@ -14,7 +14,7 @@ describe "PasswordResets" do
    it "does not email invalid user when requesting password reset" do
     visit login_path
     click_link "password"
-    fill_in "Email", :with => "nobody@example.com"
+    fill_in "Username or Email", :with => "nobody@example.com"
     click_button "Reset Password"
     current_path.should eq(root_path)
     page.should have_content("Email has been sent with password reset instructions.")
