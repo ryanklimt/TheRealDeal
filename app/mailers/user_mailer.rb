@@ -13,7 +13,7 @@ class UserMailer < ActionMailer::Base
   
   def verify_email(user)
     @user = user
-    mail :to => user.email, :subject => "Verify Your Email"
+    mail :to => user.email, :subject => "Verify Your Email", :sender => "example@example.com"
   end
   
 end
