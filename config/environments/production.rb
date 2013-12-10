@@ -88,6 +88,6 @@ UnknownBusiness::Application.configure do
           :password       => ENV['tj23ktel'],
           :domain         => 'heroku.com'
   }
-  config.action_mailer.default_url_options = { :host => 'ultimatebeta.com' } 
+  config.action_mailer.default_url_options = { :host => 'therealdealio' } 
    
 end
