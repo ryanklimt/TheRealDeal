@@ -5,7 +5,6 @@ class CreateSubforums < ActiveRecord::Migration
       t.text :description
       t.integer :forum_id
       t.integer :user_id
-
       t.timestamps
     end
   end

@@ -6,7 +6,6 @@ class CreateTopics < ActiveRecord::Migration
       t.datetime :last_post_at
       t.integer :subforum_id
       t.integer :user_id
-
       t.timestamps
     end
   end

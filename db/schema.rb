@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20131206022012) do
   create_table "wallposts", force: true do |t|
     t.string   "content"
     t.integer  "user_id"
+    t.integer  "direted_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
