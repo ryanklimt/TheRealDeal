@@ -7,7 +7,7 @@ UnknownBusiness::Application.initialize!
 ActionMailer::Base.smtp_settings = {
   :user_name => "app20109224@heroku.com",
   :password => "tj23ktel",
-  :domain => "www.ultimatebeta.com",
+  :domain => "ultimatebeta.com",
   :address => "smtp.sendgrid.net", 
   :port => 586,
   :authentication => :plain,
