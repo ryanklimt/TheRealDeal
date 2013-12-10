@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "no-reply@ultimatebeta.com"
+  default from: "noreply@ultimatebeta.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -8,12 +8,12 @@ class UserMailer < ActionMailer::Base
   #
   def password_reset(user)
     @user = user
-    mail :to => user.email, :subject => "Password Reset", :from => "no-reply@ultimatebeta.com"
+    mail :to => user.email, :subject => "Password Reset", :from => "noreply@ultimatebeta.com"
   end
   
   def verify_email(user)
     @user = user
-    mail :to => user.email, :subject => "Verify Your Email", :from => "no-reply@ultimatebeta.com"
+    mail :to => user.email, :subject => "Verify Your Email", :from => "noreply@ultimatebeta.com"
   end
   
 end

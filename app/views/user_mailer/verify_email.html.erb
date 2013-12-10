@@ -1,5 +1,5 @@
-Welcome to the site <%= @user.username %>!
+Welcome to the site <%= @user.username %>!<br />
 
-To verify your email, click the URL below.
+To verify your email, click the URL below.<br />
 
 <%= link_to "Verify Now", root_url.gsub('/', '') + verify_path(@user.email_auth_token) %>
