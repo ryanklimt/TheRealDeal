@@ -1,6 +1,6 @@
 <% @title = "Forums" %>
 
-<h1> Threads </h1>
+<h1>Formus</h1>
 
 <ul>
 <% @forums.each do |t| %>
@@ -17,5 +17,5 @@
 </ul>
 
 <% if signed_in? and current_user.admin? %>
-  <%= link_to "New Thread", new_forum_path %>
+  <%= link_to "New Forum", new_forum_path %>
 <% end %>
