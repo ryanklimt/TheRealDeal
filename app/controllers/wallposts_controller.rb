@@ -28,7 +28,7 @@ class WallpostsController < ApplicationController
   private
   
   def wallpost_params
-    params.require(:wallpost).permit(:content)
+    params.require(:wallpost).permit(:content, :directed_user_id)
   end
   
 end

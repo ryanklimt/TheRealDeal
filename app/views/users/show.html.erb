@@ -12,9 +12,7 @@
       <span><b>Last Name: </b><%= @user.lastname %></span>
 	</section>
    	<%= render 'shared/stats' %>
-	<% if current_user?(@user) then %>
-		<%= render 'shared/wallpost_form' %>
-	<% end %>
+	<%= render 'shared/wallpost_form' %>
   </aside>
   
   <div class="span8">

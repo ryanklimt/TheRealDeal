@@ -1,7 +1,12 @@
 <%= form_for(@wallpost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.text_area :content, placeholder: "Share your feelings..." %>
+  	<% if @user.id == current_user.id then %>
+	    <%= f.text_area :content, placeholder: "Share your feelings..." %>
+	<% else %>
+		<%= f.text_area :content, placeholder: "Post to " + @user.username + "'s profile..." %>
+	<% end %>
+		<%= f.hidden_field :directed_user_id, value: @user.id %>
   </div>
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>
 <% end %>
