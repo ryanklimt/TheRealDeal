@@ -8,12 +8,12 @@ class UserMailer < ActionMailer::Base
   #
   def password_reset(user)
     @user = user
-    mail :to => user.email, :subject => "Password Reset"
+    mail :to => user.email, :subject => "Password Reset", :from => "no-reply@ultimatebeta.com"
   end
   
   def verify_email(user)
     @user = user
-    mail :to => user.email, :subject => "Verify Your Email", :from => "sender@example.com"
+    mail :to => user.email, :subject => "Verify Your Email", :from => "no-reply@ultimatebeta.com"
   end
   
 end
