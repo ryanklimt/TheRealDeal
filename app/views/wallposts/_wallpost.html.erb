@@ -1,7 +1,7 @@
 <li>
   <span class="content"><%= wallpost.content %></span>
   <% if wallpost.directed_user_id != wallpost.user_id then %>
-  	<%= link_to user_profile(User.find(wallpost.user_id)) %>
+  	<%= link_to User.find(wallpost.user_id).username, user_path(User.find(wallpost.user_id).username) %>
   <% end %>
   <span class="timestamp">
     Posted <%= time_ago_in_words(wallpost.created_at) %> ago.
