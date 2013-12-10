@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by_username(params[:username])
     @wallpost = @user.wallposts.build
-    @wallposts = @user.wallposts.paginate(page: params[:page])
+    @wallposts = Wallpost.where(directed_user_id: @user.id).paginate(page: params[:page])
   end
   
   # GET /settings
@@ -65,7 +65,7 @@ class UsersController < ApplicationController
       flash[:success] = @user.username + " deleted!"
       redirect_to users_path
     else
-      flash[:danger] = "You tried to delete yourself you idiot!"
+      flash[:danger] = "You tried to cannot delete yourself!"
       redirect_to root_path
     end
   end
@@ -86,7 +86,7 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
   
-  # PUT /:username/admin
+  # PUT /:username
   def admin
     @user = User.find_by_username(params[:username])
     if current_user.admin? && @user.update_attributes(:admin => true) then
