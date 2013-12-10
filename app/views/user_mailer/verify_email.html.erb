@@ -2,4 +2,4 @@ Welcome to the site <%= @user.username %>!
 
 To verify your email, click the URL below.
 
-<%= link_to "Verify Now", "http://www.ultimatebeta.com" + verify_path(@user.email_auth_token) %>
+<%= link_to "Verify Now", root_url.gsub('/', '') + verify_path(@user.email_auth_token) %>
