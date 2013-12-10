@@ -100,6 +100,7 @@ GEM
     mini_portile (0.5.2)
     minitest (4.7.5)
     multi_json (1.8.2)
+    newrelic_rpm (3.7.0.177)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     nokogiri (1.6.0-x86-mingw32)
@@ -216,6 +217,7 @@ DEPENDENCIES
   honeypot-captcha
   jbuilder (~> 1.2)
   jquery-rails
+  newrelic_rpm
   pg
   rails (= 4.0.1)
   rails_12factor

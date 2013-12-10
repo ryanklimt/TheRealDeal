@@ -14,6 +14,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'honeypot-captcha'
+gem 'newrelic_rpm'
 
 group :test do
   gem 'capybara'
