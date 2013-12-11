@@ -1,11 +1,11 @@
-<% @title = "Forgot Password?" %>
+<% @title = "Forgot your password?" %>
 
-<h1>Forgot Password?</h1>
+<h1>Forgot your password?</h1>
 
 <%= form_tag password_resets_path, :method => :post do %>
   <div class="form-group">
-    <% label_tag :email %>
-    <%= text_field_tag :email, params[:email], class: "form-control", placeholder: "Email" %>
+    <% label_tag :email_username, "Username or Email" %>
+    <%= text_field_tag :email_username, params[:email_username], class: "form-control", placeholder: "Username or Email" %>
   </div>
   <div class="actions"><%= submit_tag "Reset Password", class: "btn btn-primary" %></div>
 <% end %>
