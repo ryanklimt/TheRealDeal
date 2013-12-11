@@ -1,14 +1,12 @@
 <li>
-  <span class="content"><%= wallpost.content %></span>
-  <% if wallpost.directed_user_id != wallpost.user_id then %>
-  	<%= link_to User.find(wallpost.user_id).username, user_path(User.find(wallpost.user_id).username) %>
-  <% end %>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(wallpost.created_at) %> ago.
-  </span>
-  <% if current_user?(wallpost.user) or (!current_user.nil? and current_user.admin?) or current_user_id?(wallpost.directed_user_id) %>
-    <%= link_to "delete", wallpost, method: :delete,
-                                     data: { confirm: "You sure?" },
-                                     title: wallpost.content %>
-  <% end %>
+	<span class="timestamp">
+		<%= link_to User.find(wallpost.user_id).username, user_path(User.find(wallpost.user_id).username) %>
+  		<%= time_ago_in_words(wallpost.created_at) %> ago
+  	</span>
+	<span class="content">
+  		<%= wallpost.content %>
+  	</span>
+	<% if current_user?(wallpost.user) or (!current_user.nil? and current_user.admin?) or current_user_id?(wallpost.directed_user_id) %>
+    	<%= link_to "Delete Post", wallpost, method: :delete,  data: { confirm: "Are you sure you want to delete this post?" }, title: wallpost.content %>
+	<% end %>
 </li>
