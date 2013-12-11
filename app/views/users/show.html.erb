@@ -1,25 +1,25 @@
 <% @title = @user.username + "'s" + " Profile"%>
 
 <div class="row">
+	
   <aside class="span4">
     <section>
       <h1>
         <%= link_to gravatar_for(@user, 120), @user.username %>
         <%= @user.username %>
       </h1>
-      <span><b>Email: </b><%= @user.email %></span>
-      <span><b>First Name: </b><%= @user.firstname %></span>
-      <span><b>Last Name: </b><%= @user.lastname %></span>
-      <span><b>Bio: </b><%= @user.bio %></span>
-      
+      <% if !@user.email.nil? && !@user.email.empty? %><span><b>Email: </b><%= @user.email %></span><% end %>
+      <% if !@user.firstname.nil? && !@user.firstname.empty? %><span><b>First Name: </b><%= @user.firstname %></span><% end %>
+      <% if !@user.lastname.nil? && !@user.lastname.empty? %><span><b>Last Name: </b><%= @user.lastname %></span><% end %>
+      <% if !@user.bio.nil? && !@user.bio.empty? %><span><b>Bio: </b><%= @user.bio %></span><% end %>
+      <%= render 'follow_form' if signed_in? %>
 	</section>
    	<%= render 'shared/stats' %>
+   	<%= render 'admin' if current_user.admin? %>
 	<%= render 'shared/wallpost_form' %>
   </aside>
   
   <div class="span8">
-  	<%= render 'admin' if current_user.admin? %>
-  	<%= render 'follow_form' if signed_in? %>
     <% if @user.wallposts.any? %>
       <h3><%= "Post".pluralize(@user.wallposts.count)%>(<%= @user.wallposts.count %>)</h3>
       <ol class="microposts">
@@ -28,4 +28,5 @@
       <%= will_paginate @wallposts %>
     <% end %>
   </div>
+  
 </div>
