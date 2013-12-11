@@ -1,4 +1,4 @@
-<li>
+<li id="<%= wallpost.id %>">
 	<%= link_to gravatar_for(wallpost.user), wallpost.user.username %>
 	<span class="timestamp">
 		<%= link_to wallpost.user.username, user_path(wallpost.user.username) %>
