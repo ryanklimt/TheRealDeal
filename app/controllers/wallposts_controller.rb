@@ -15,13 +15,13 @@ class WallpostsController < ApplicationController
   
   def destroy
     @wallpost = Wallpost.find(params[:id])
-    if current_user?(@wallpost.user) or current_user.admin? then
+    if current_user?(@wallpost.user) or current_user.admin? or current_user_id?(@wallpost.directed_user_id) then
       @wallpost.destroy
       flash[:success] = "Post Deleted!"
       redirect_to :back
     else
       flash[:danger] = "You can't delete other peoples posts!"
-      redirect_to current_user
+      redirect_to user_path(current_user.username)
     end
   end
   

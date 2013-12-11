@@ -36,6 +36,10 @@ module SessionsHelper
     user == current_user
   end
   
+  def current_user_id?(id)
+    id == current_user.id
+  end
+  
   def signed_in_user
     unless signed_in?
       redirect_to login_path, :flash => { :info => "Please sign in." }
