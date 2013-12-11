@@ -276,3 +276,31 @@ aside {
     margin-bottom: 5px;
   }
 }
+
+/*Ryan's Stuff*/
+
+#follow_form {
+  float:left;
+}
+
+#admin_form {
+  float:right;
+}
+
+#follow_form input, #admin_form input {
+  margin:0;
+}
+
+#follow_form form, #admin_form form {
+  width:auto;
+}
+
+#follow_form input[value=Unfollow]:hover {
+  background-color:#600000; /*red*/
+  color:#fff; /*white*/
+}
+
+#wallpost_content {
+    resize:none;
+    padding:5px;
+}
