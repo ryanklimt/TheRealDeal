@@ -13,9 +13,9 @@
       <% if !@user.lastname.nil? && !@user.lastname.empty? %><span><b>Last Name: </b><%= @user.lastname %></span><% end %>
       <% if !@user.bio.nil? && !@user.bio.empty? %><span><b>Bio: </b><%= @user.bio %></span><% end %>
       <%= render 'follow_form' if signed_in? %>
+      <%= render 'admin' if current_user.admin? %>
 	</section>
    	<%= render 'shared/stats' %>
-   	<%= render 'admin' if current_user.admin? %>
 	<%= render 'shared/wallpost_form' %>
   </aside>
   
