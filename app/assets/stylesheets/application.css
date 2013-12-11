@@ -32,3 +32,8 @@
 	background-color:#600000; /*red*/
  	color:#fff; /*white*/
 }
+
+#wallpost_content {
+    resize:none;
+    padding:5px;
+}
