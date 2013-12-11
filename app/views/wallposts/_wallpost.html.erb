@@ -1,6 +1,6 @@
 <li>
 	<span class="timestamp">
-		<%= link_to User.find(wallpost.user_id).username, user_path(User.find(wallpost.user_id).username) %>
+		<%= link_to wallpost.user.username, user_path(wallpost.user.username) %>
   		<%= time_ago_in_words(wallpost.created_at) %> ago
   	</span>
 	<span class="content">

@@ -13,7 +13,7 @@
 
 	<div class='container'>
 		
-		 <% flash.each do |level, message| %>
+		<% flash.each do |level, message| %>
       		<div class="alert alert-<%= level %>"%><%= message %></div>
     	<% end %>
 		
