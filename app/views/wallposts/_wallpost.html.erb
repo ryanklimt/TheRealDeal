@@ -1,13 +1,13 @@
 <li id="<%= wallpost.id %>">
 	<%= link_to gravatar_for(wallpost.user), wallpost.user.username %>
-	<span class="timestamp">
-		<%= link_to wallpost.user.username, user_path(wallpost.user.username) %>
-  		<%= time_ago_in_words(wallpost.created_at) %> ago
-  	</span>
+	<span class="timestamp"> <%= link_to wallpost.user.username, user_path(wallpost.user.username) %>
+		<%= time_ago_in_words(wallpost.created_at) %> ago </span>
 	<span class="content">
-  		<%= wallpost.content %>
-  	</span>
+		<% if wallpost.user_id != wallpost.directed_user_id and @user.id == wallpost.user.id %>
+			<%= link_to "@" + find_directed_user(wallpost.directed_user_id), user_path(find_directed_user(wallpost.directed_user_id)) %>
+		<% end %>
+		<%= wallpost.content %> </span>
 	<% if current_user?(wallpost.user) or (!current_user.nil? and current_user.admin?) or current_user_id?(wallpost.directed_user_id) %>
-    	<%= link_to "Delete Post", wallpost, method: :delete,  data: { confirm: "Are you sure you want to delete this post?" }, title: wallpost.content %>
+		<%= link_to "Delete Post", wallpost, method: :delete,  data: { confirm: "Are you sure you want to delete this post?" }, title: wallpost.content %>
 	<% end %>
 </li>

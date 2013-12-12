@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   end
   
   def feed
-    Wallpost.from_users_followed_by(self)
+    Wallpost.from_users_followed_by(self).where("directed_user_id = user_id")
   end
   
   def following?(other_user)

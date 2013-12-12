@@ -1,17 +1,10 @@
-<% if feed_item.user_id == feed_item.directed_user_id then %>
-	
-	<li id="<%= feed_item.id %>">
-		<%= link_to gravatar_for(feed_item.user), feed_item.user.username %>
-		<span class="timestamp">
-			<%= link_to feed_item.user.username, user_path(feed_item.user.username) %>
-  			<%= time_ago_in_words(feed_item.created_at) %> ago
-  		</span>
-		<span class="content">
-			<%= feed_item.content %>
-		</span>
-		<% if current_user?(feed_item.user) or current_user.admin? %>
-			<%= link_to "Delete Post", feed_item, method: :delete, data: { confirm: "Are you sure you want to delete this post?" }, title: feed_item.content %>
-		<% end %>
-	</li>
-	
-<% end %>
+<li id="<%= feed_item.id %>">
+	<%= link_to gravatar_for(feed_item.user), feed_item.user.username %>
+	<span class="timestamp"> <%= link_to feed_item.user.username, user_path(feed_item.user.username) %>
+		<%= time_ago_in_words(feed_item.created_at) %> ago </span>
+	<span class="content"> <%= feed_item.content %> </span>
+	<% if current_user?(feed_item.user) or current_user.admin? %>
+		<%= link_to "Delete Post", feed_item, method: :delete, data: { confirm: "Are you sure you want to delete this post?" }, title: feed_item.content %>
+	<% end %>
+</li>
+

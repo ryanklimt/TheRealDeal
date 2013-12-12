@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by_username(params[:username])
     @wallpost = @user.wallposts.build
-    @wallposts = Wallpost.where(directed_user_id: @user.id).paginate(page: params[:page])
+    @wallposts = Wallpost.where("directed_user_id = ? or user_id = ?", @user.id, @user.id).paginate(page: params[:page])
   end
   
   # GET /settings

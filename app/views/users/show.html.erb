@@ -21,7 +21,6 @@
   
   <div class="span8">
     <% if @user.wallposts.any? %>
-      <h3><%= "Post".pluralize(@user.wallposts.count)%>(<%= @user.wallposts.count %>)</h3>
       <ol class="microposts">
         <%= render @wallposts %>
       </ol>

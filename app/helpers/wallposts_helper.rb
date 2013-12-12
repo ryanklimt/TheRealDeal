@@ -3,6 +3,10 @@ module WallpostsHelper
   def wrap(content)
     sanitize(raw(content.split.map{ |s| wrap_long_string(s) }.join(' ')))
   end
+  
+  def find_directed_user(id)
+    User.find(id).username
+  end
 
   private
 
