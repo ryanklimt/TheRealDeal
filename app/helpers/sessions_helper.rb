@@ -5,13 +5,13 @@ module SessionsHelper
       remember_token = User.new_remember_token
       cookies.permanent[:remember_token] = remember_token
       user.update_attribute(:remember_token, User.encrypt(remember_token))
-      self.current_user = user
     else
       remember_token = User.new_remember_token
       cookies[:remember_token] = { value: remember_token, expires: 8.hours.from_now }
       user.update_attribute(:remember_token, User.encrypt(remember_token))
-      self.current_user = user
     end
+    user.update_attributes(status: "Online")
+    self.current_user = user
   end
   
   def signed_in?
@@ -20,6 +20,7 @@ module SessionsHelper
   
   def sign_out
     self.current_user = nil
+    current_user.update_attributes(status: "Offline")
     cookies.delete(:remember_token)
   end
   

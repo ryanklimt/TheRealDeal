@@ -12,6 +12,7 @@
       <% if !@user.firstname.nil? && !@user.firstname.empty? %><span><b>First Name: </b><%= @user.firstname %></span><% end %>
       <% if !@user.lastname.nil? && !@user.lastname.empty? %><span><b>Last Name: </b><%= @user.lastname %></span><% end %>
       <% if !@user.bio.nil? && !@user.bio.empty? %><span><b>Bio: </b><%= @user.bio %></span><% end %>
+      <span><b>Status: </b><%= @user.status %></span>
       <%= render 'follow_form' if signed_in? %>
       <%= render 'admin' if current_user.admin? %>
 	</section>

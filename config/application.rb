@@ -24,5 +24,7 @@ module UnknownBusiness
     
     config.i18n.enforce_available_locales = true
     
+    config.time_zone = "Central Time (US & Canada)"
+    
   end
 end
