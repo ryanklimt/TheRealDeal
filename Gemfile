@@ -16,7 +16,9 @@ gem 'jbuilder', '~> 1.2'
 gem 'honeypot-captcha'
 gem 'newrelic_rpm'
 gem 'rb-fsevent'
+gem 'elasticsearch'
 gem 'searchkick'
+gem 'rails_serve_static_assets'
 
 group :test do
   gem 'capybara'

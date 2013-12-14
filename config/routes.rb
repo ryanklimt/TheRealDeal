@@ -30,7 +30,11 @@ UnknownBusiness::Application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
   
   # User Routes
-  resources :users, only: [:index, :create]
+  resources :users, only: [:index, :create] do
+    collection do
+      get :autocomplete
+    end
+  end
   get 'verify/:email_auth_token', to: 'users#verify', as: 'verify'
   get 'signup', to: 'users#new', as: 'signup'
   get 'settings', to: 'users#edit'
