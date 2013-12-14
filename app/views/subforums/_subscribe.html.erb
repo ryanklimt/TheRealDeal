@@ -1,5 +1,5 @@
 <%= form_for(current_user.subscriptions.build(subforum_id: @subforum.id),
              remote: true) do |f| %>
   <%= f.hidden_field :subforum_id %>
-  <%= f.submit "Subscribe"%>
+  <%= f.submit "Subscribe", class: "btn btn-large btn-primary"%>
 <% end %>
