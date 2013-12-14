@@ -32,6 +32,7 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    ansi (1.4.3)
     arel (4.0.1)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
@@ -77,6 +78,7 @@ GEM
     guard-rspec (4.2.0)
       guard (>= 2.1.1)
       rspec (>= 2.14, < 4.0)
+    hashr (0.0.22)
     hike (1.2.3)
     honeypot-captcha (0.0.2)
     i18n (0.6.9)
@@ -144,6 +146,8 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -167,6 +171,9 @@ GEM
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
+    searchkick (0.3.5)
+      tire
+      tire-contrib
     slop (3.4.7)
     sprockets (2.10.1)
       hike (~> 1.2)
@@ -185,6 +192,16 @@ GEM
     tilt (1.4.1)
     timecop (0.7.0)
     timers (1.1.0)
+    tire (0.6.1)
+      activemodel (>= 3.0)
+      activesupport
+      ansi
+      hashr (~> 0.0.19)
+      multi_json (~> 1.3)
+      rake
+      rest-client (~> 1.6)
+    tire-contrib (0.1.3)
+      tire
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -195,6 +212,7 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     will_paginate (3.0.5)
+    win32console (1.3.2)
     win32console (1.3.2-x86-mingw32)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -224,6 +242,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
+  searchkick
   sqlite3
   timecop
   turbolinks

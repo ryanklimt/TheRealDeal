@@ -1,0 +1,1 @@
+ENV["ELASTICSEARCH_URL"] = "http://site:ae564d936eb397ba6e277215b2b9dcf0@api.searchbox.io"
