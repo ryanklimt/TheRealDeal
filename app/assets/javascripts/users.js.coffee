@@ -5,3 +5,10 @@ $ ->
   $('#user_search').typeahead
     name: "user"
     remote: "/users/autocomplete?query=%QUERY"
+    template: '<p>{{username}}</p>'
+    engine:
+      compile: (template) ->
+        return {
+          render: (ctx)->
+            return template.replace(/\$(\w+)/g, (msg) -> ctx[msg.substring(1)])
+        }
