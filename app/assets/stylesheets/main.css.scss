@@ -295,7 +295,8 @@ aside {
   width:auto;
 }
 
-#follow_form input[value=Unfollow]:hover {
+#follow_form input[value=Unfollow]:hover,
+#subscription_form input[value=Unsubsribe]:hover {
   background-color:#600000; /*red*/
   color:#fff; /*white*/
 }

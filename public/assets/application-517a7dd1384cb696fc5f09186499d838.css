@@ -11,6 +11,7 @@
 
 
  */
+
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 article,
 aside,
@@ -5233,3 +5234,27 @@ footer {
 aside textarea {
   height: 100px;
   margin-bottom: 5px; }
+
+/*****************************************************Ryan's Stuff*****************************************************/
+#follow_form {
+  float: left; }
+
+#admin_form {
+  float: right; }
+
+#follow_form input, #admin_form input {
+  margin: 0; }
+
+#follow_form form, #admin_form form {
+  width: auto; }
+
+#follow_form input[value=Unfollow]:hover,
+#subscription_form input[value=Unsubsribe]:hover {
+  background-color: #600000;
+  /*red*/
+  color: #fff;
+  /*white*/ }
+
+#wallpost_content {
+  resize: none;
+  padding: 5px; }
