@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   
-  searchkick
+  searchkick autocomplete: ['username']
   
   before_save { self.email = email.downcase }
   before_create :create_remember_token

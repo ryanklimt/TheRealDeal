@@ -16,6 +16,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'honeypot-captcha'
 gem 'newrelic_rpm'
 gem 'rb-fsevent'
+gem 'elasticsearch'
 gem 'searchkick'
 
 group :test do

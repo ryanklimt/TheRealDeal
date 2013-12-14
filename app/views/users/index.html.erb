@@ -1,5 +1,19 @@
 <% @title = "All Users" %>
 
+<%= form_tag users_path, class: "form-inline", method: :get do %>
+	<div class="input-group input-group-lg" >
+		<% if params[:query].present? %>
+			<div class="input-group-btn">
+				<%= link_to "clear", users_path, class: "btn btn-default" %>
+			</div>
+		<% end %>
+		<%= text_field_tag :query, params[:query], class: "form-control", id: "user_search", autocomplete: "off" %>
+		<div class=input-group-btn">
+			<%= submit_tag "Search", class: "btn btn-primary" %>
+		</div>
+	</div>
+<% end %>
+
 <h1>All Users</h1>
 
 <%= will_paginate @users %>
@@ -7,5 +21,3 @@
 <ul class="users">
   <%= render @users %>
 </ul>
-
-<%= will_paginate @users %>
