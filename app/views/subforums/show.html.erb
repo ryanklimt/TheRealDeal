@@ -4,7 +4,7 @@
 
 <span>&laquo;<%= link_to " Back", forum_path(@subforum.forum_id) %></span>
 
-<%= render "subscription_form" %>
+<%= render "subscription_form" if signed_in? %>
 
 <% for topic in @subforum.topics %>
 
