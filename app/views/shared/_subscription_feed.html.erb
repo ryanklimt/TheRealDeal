@@ -2,7 +2,14 @@
   <ol class="subscriptions">
     <% @sub_items.each do |sub| %>
     	<p class = <%= sub.id.to_s %>>
-    		<%= link_to sub.subforum.name, sub.subforum %>
+    	<%= link_to sub.subforum.name, sub.subforum %>
+    		<% if sub.subforum.topics.any? then %>
+	    		<ul>
+		    		<% sub.subforum.topics.each do |topic| %>
+		    			<li><%= link_to topic.title, topic %></li>
+		    		<% end %>
+	    		</ul>
+    		<% end %>
     	</p>
     <% end %>
   </ol>

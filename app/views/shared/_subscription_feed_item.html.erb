@@ -1,4 +1,7 @@
 <li id="<%= sub_item.id %>">
 	<span class="content"> <%= link_to sub_item.title, sub_item %> </span>
+	<% sub_item.topics.each do |topic| %>
+		<p><%= link_to topic.title, topic %></p>
+	<% end %>
 </li>
 
