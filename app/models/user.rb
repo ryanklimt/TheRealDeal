@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
   
-  searchkick
-  
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   before_create { generate_token(:auth_token) }
