@@ -5242,10 +5242,12 @@ aside textarea {
 #admin_form {
   float: right; }
 
-#follow_form input, #admin_form input {
+#follow_form input,
+#admin_form input {
   margin: 0; }
 
-#follow_form form, #admin_form form {
+#follow_form form,
+#admin_form form {
   width: auto; }
 
 #follow_form input[value=Unfollow]:hover,
@@ -5255,6 +5257,7 @@ aside textarea {
   color: #fff;
   /*white*/ }
 
-#wallpost_content {
+#wallpost_content,
+#user_bio {
   resize: none;
   padding: 5px; }
