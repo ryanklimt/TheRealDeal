@@ -1,8 +1,8 @@
 <% @title = "Edit Sub-Forum" %>
 
-<h1>Edit <%= @sforum.name %> </h1>
+<h1>Edit <%= @subforum.name %> </h1>
 
-<%= form_for @sforum do |t| %>
+<%= form_for @subforum do |t| %>
 
   <%= render "subforum_form", f: t %>
 

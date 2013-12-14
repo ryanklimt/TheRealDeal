@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   before_create { generate_token(:auth_token) }
   
   has_many :wallposts, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
   has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
@@ -31,9 +32,27 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
   
-  def feed
-    Wallpost.from_users_followed_by(self).where("directed_user_id = user_id")
+  #Subscription stuff
+  
+  def subscribed_to?(subforum)
+    subscriptions.find_by(subforum_id: subforum.id)
   end
+  
+  def subscribe!(subforum)
+    subscriptions.create!(subforum_id: subforum.id)
+  end
+  
+  def unsubscribe!(subforum)
+    subscriptions.find_by(subforum_id: subforum.id).destroy!
+  end
+  
+  def subscription_feed
+    self.subscriptions
+  end
+  
+  #END
+  
+  #Following and Followers stuff
   
   def following?(other_user)
     relationships.find_by(followed_id: other_user.id)
@@ -46,6 +65,12 @@ class User < ActiveRecord::Base
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy!
   end
+  
+  def feed
+    Wallpost.from_users_followed_by(self).where("directed_user_id = user_id")
+  end
+  
+  #END
   
   def send_password_reset
     generate_token(:password_reset_token)

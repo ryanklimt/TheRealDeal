@@ -1,0 +1,5 @@
+<%= form_for(current_user.subscriptions.find_by(subforum_id: @subforum.id),
+             html: { method: :delete },
+             remote: true) do |f| %>
+  <%= f.submit "Unsubscribe" %>
+<% end %>

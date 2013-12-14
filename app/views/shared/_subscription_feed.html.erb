@@ -1,0 +1,10 @@
+<% if !@sub_items.nil? %>
+  <ol class="subscriptions">
+    <% @sub_items.each do |sub| %>
+    	<p class = <%= sub.id.to_s %>>
+    		<%= link_to sub.subforum.name, sub.subforum %>
+    	</p>
+    <% end %>
+  </ol>
+  <%= will_paginate @sub_items %>
+<% end %>

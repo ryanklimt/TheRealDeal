@@ -3,6 +3,8 @@ class Subforum < ActiveRecord::Base
   belongs_to :forum
   belongs_to :user
   
+  has_many :subscriptions, dependent: :destroy
+  has_many :users, :through => :subscriptions
   has_many :topics, :dependent => :destroy
   
   default_scope -> { order('created_at DESC') }

@@ -1,13 +1,4 @@
-<% if @sforum.errors.any? %>
-    <div class="alert alert-danger"> 
-    <p>The form contains <%= pluralize(@sforum.errors.count, "error") %>.</p>
-    </div>
-    <ul>
-      <% @sforum.errors.full_messages.each do |message| %>
-      <li class="text-danger"> <%= message %> </li>
-      <% end %>
-    </ul>
-<% end %>
+<%= render 'shared/error_messages', object: f.object %>
 
 <div class='form-group'>
 	<%= f.label :name, "Name*" %>

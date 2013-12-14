@@ -5,6 +5,7 @@ class StaticPagesController < ApplicationController
     if signed_in? then
       @wallpost = current_user.wallposts.build
       @feed_items = current_user.feed.paginate(page: params[:page])
+      @sub_items = current_user.subscription_feed.paginate(page: params[:page])
     end
   end
 

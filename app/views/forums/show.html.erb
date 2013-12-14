@@ -9,7 +9,7 @@
 
   <li>Title: <%= link_to subforum.name, subforum %>
     <% if current_user?(subforum.user) then %>
-    | <%= link_to "edit", edit_subforum_path(subforum) %>
+    	| <%= link_to "edit", edit_subforum_path(subforum) %>
     <% end %>
     <% if (current_user and current_user.admin?) or current_user?(subforum.user) then %>
       | <%= link_to 'delete', subforum, method: :delete, data: { confirm: "You sure you want to delete #{subforum.name}?" } %>
