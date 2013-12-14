@@ -10680,7 +10680,12 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 
 }).call(this);
 (function() {
-
+  $(function() {
+    return $('#user_search').typeahead({
+      name: "user",
+      remote: "/users/autocomplete?query=%QUERY"
+    });
+  });
 
 }).call(this);
 (function() {
