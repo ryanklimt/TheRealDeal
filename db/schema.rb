@@ -56,8 +56,6 @@ ActiveRecord::Schema.define(version: 20131213212428) do
     t.datetime "updated_at"
   end
 
-  add_index "subscriptions", ["subforum_id", "user_id"], name: "index_subscriptions_on_subforum_id_and_user_id", unique: true
-
   create_table "topics", force: true do |t|
     t.string   "title"
     t.integer  "last_poster_id"
