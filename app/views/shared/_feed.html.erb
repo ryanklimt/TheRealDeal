@@ -1,6 +1,8 @@
-<% if !@feed_items.nil? %>
+<% if !@feed_items.nil? && !@feed_items.empty? %>
   <ol class="microposts">
     <%= render partial: 'shared/feed_item', collection: @feed_items %>
   </ol>
   <%= will_paginate @feed_items %>
+<% else %>
+	<p>Sorry. Unfortunately you have no relationship feed. <%= link_to "Follow users now!", users_path %></p>
 <% end %>

@@ -1,4 +1,4 @@
-<% if !@sub_items.nil? %>
+<% if !@sub_items.nil? && !@sub_items.empty? %>
   <ol class="subscriptions">
     <% @sub_items.each do |sub| %>
     	<p class = <%= sub.id.to_s %>>
@@ -14,4 +14,6 @@
     <% end %>
   </ol>
   <%= will_paginate @sub_items %>
+<% else %>
+	<p>Sorry. Unfortunately you have no subscriptions. <%= link_to "Follow one now!", forums_path %></p>
 <% end %>
