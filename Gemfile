@@ -19,6 +19,7 @@ gem 'rb-fsevent'
 gem 'elasticsearch'
 gem 'searchkick'
 gem 'rails_serve_static_assets'
+gem 'thin'
 
 group :test do
   gem 'capybara'

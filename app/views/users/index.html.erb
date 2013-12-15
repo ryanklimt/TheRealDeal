@@ -7,7 +7,7 @@
 				<%= link_to "clear", users_path, class: "btn btn-default" %>
 			</div>
 		<% end %>
-		<%= text_field_tag :query, params[:query], class: "form-control", id: "user_search", autocomplete: "off" %>
+		<%= text_field_tag :query, params[:query], class: "form-control", id: "user_search", autocomplete: "on" %>
 		<div class=input-group-btn">
 			<%= submit_tag "Search", class: "btn btn-primary" %>
 		</div>
