@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if params[:query].present?
       @users = User.search(params[:query], page: params[:page])
     else
-      @users = User.all.page params[:page]
+      @users = User.all.paginate(page: params[:page], per_page: 15)
     end
   end
   

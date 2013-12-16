@@ -20,6 +20,7 @@ gem 'elasticsearch'
 gem 'searchkick'
 gem 'rails_serve_static_assets'
 gem 'thin'
+gem 'rufus-scheduler'
 
 group :test do
   gem 'capybara'
